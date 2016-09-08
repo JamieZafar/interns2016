@@ -9,7 +9,8 @@ var roundResetTime = 7;
 var rounds = {
     letters: true,
     numbers: true,
-    conundrum: true
+    conundrum: true,
+    teaser: true
 }
 
 

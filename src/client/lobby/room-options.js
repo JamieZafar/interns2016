@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { updateLetterSlider, updateNumberSlider, updateConundrumSlider } from './lobby-actions';
+import { updateLetterSlider, updateNumberSlider, updateConundrumSlider, updateTeaserSlider } from './lobby-actions';
 
 import style from './lobby.scss';
 
@@ -16,6 +16,10 @@ export class RoomOptions extends Component {
 
     handleConundrumSliderChange(event) {
         this.props.updateConundrumSlider(event.target.value);
+    }
+
+    handleTeaserSliderChange(event) {
+        this.props.updateTeaserSlider(event.target.value);
     }
 
     letterSlider() {
@@ -57,6 +61,19 @@ export class RoomOptions extends Component {
         );
     }
 
+    teaserSlider() {
+        return(
+            <div>
+                Tom's Time Teasers
+                <input className={style.inputSlider} type="range" min="1" max="9" value={this.props.sliders.teaserSlider}
+                onChange={(event) => this.handleTeaserSliderChange(event)}/>
+                <div className={style.roundNumber}>
+                    {this.props.sliders.teaserSlider}
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className={`col-lg-8 ${style.inputSliderWrapper}`}>
@@ -66,6 +83,8 @@ export class RoomOptions extends Component {
                 {this.props.roundTypes.numbers ? this.numberSlider() : null}
                 <br />
                 {this.props.roundTypes.conundrum ? this.conundrumSlider() : null}
+                <br />
+                {this.props.roundTypes.teaser ? this.teaserSlider() : null}
             </div>
         )
     }
@@ -75,7 +94,8 @@ const mapStateToProps = state => ({
     sliders: {
         letterSlider: state.lobby.letterSlider,
         numberSlider: state.lobby.numberSlider,
-        conundrumSlider: state.lobby.conundrumSlider
+        conundrumSlider: state.lobby.conundrumSlider,
+        teaserSlider: state.lobby.teaserSlider
     },
     roundTypes: state.lobby.roundTypes
 })
@@ -89,6 +109,9 @@ const mapDispatchToProps = dispatch => ({
     },
     updateConundrumSlider(value) {
         dispatch(updateConundrumSlider(value));
+    },
+    updateTeaserSlider(value) {
+        dispatch(updateTeaserSlider(value));
     }
 })
 

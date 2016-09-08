@@ -82,7 +82,8 @@ const mapStateToProps = state => ({
     rounds: {
         letter: state.lobby.letterSlider,
         number: state.lobby.numberSlider,
-        conundrum: state.lobby.conundrumSlider
+        conundrum: state.lobby.conundrumSlider,
+        teaser: state.lobby.teaserSlider
     }
 });
 

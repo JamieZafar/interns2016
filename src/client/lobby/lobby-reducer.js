@@ -4,6 +4,7 @@ import {
     UPDATE_LETTER_SLIDER,
     UPDATE_NUMBER_SLIDER,
     UPDATE_CONUNDRUM_SLIDER,
+    UPDATE_TEASER_SLIDER,
     ROUND_TYPES,
     RESET_SLIDERS
 } from './lobby-actions';
@@ -16,7 +17,8 @@ const initialState = {
     roundTypes: {},
     letterSlider: 5,
     numberSlider: 5,
-    conundrumSlider: 5
+    conundrumSlider: 5,
+    teaserSlider: 5
 };
 
 const lobby = (state = initialState, action) => {
@@ -51,6 +53,11 @@ const lobby = (state = initialState, action) => {
                 conundrumSlider: action.payload
             });
         }
+        case UPDATE_TEASER_SLIDER: {
+            return updateState(state, {
+                teaserSlider: action.payload
+            });
+        }
         case ROUND_TYPES: {
             let newState = {
                 roundTypes: action.payload
@@ -58,6 +65,7 @@ const lobby = (state = initialState, action) => {
             newState.letterSlider = ! action.payload.letters ? 0 : state.letterSlider;
             newState.numberSlider = ! action.payload.numbers ? 0 : state.numberSlider;
             newState.conundrumSlider = ! action.payload.conundrum ? 0 : state.conundrumSlider;
+            newState.teaserSlider = ! action.payload.teaser ? 0 : state.teaserSlider;
             return updateState(state, newState);
         }
         default:{

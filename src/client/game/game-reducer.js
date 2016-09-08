@@ -35,7 +35,8 @@ const initialState = {
     bestAnswer: null,
     conundrum: '',
     conundrumResults: {},
-    teaserAnagram: ''
+    teaserAnagram: '',
+    teaserSolution: ''
 };
 
 const game = (state = initialState, action) => {
@@ -234,6 +235,11 @@ const game = (state = initialState, action) => {
         case teaserRoundActions.SET_TEASER: {
             return updateState(state, {
                 teaserAnagram: action.payload
+            })
+        }
+        case teaserRoundActions.SET_TEASER_SOLUTION: {
+            return updateState(state, {
+                teaserSolution: action.payload
             })
         }
         default:

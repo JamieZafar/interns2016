@@ -43,7 +43,7 @@ import {
     correctAnagram 
 } from '../game/conundrum-round/conundrum-round-actions';
 
-import { setTeaser } from '../game/teaser-round/teaser-round-actions';
+import { setTeaser, setTeaserSolution } from '../game/teaser-round/teaser-round-actions';
 
 import { getRoomDetails, refreshRoomUsers } from '../rooms/room-actions';
 
@@ -68,7 +68,8 @@ export default {
     messageGetLarge,
     messageGetSmall,
     messageSendEquation,
-    messageSubmitAnagram
+    messageSubmitAnagram,
+    messageClue
 };
 
 const cloak = window.cloak;
@@ -211,6 +212,9 @@ function configureAndRun(roomId) {
             },
             setTeaser: anagram => {
                 dispatch(setTeaser(anagram));
+            },
+            setTeaserSolution: solution => {
+                dispatch(setTeaserSolution(solution));
             }
         },
         initialData: {
@@ -292,4 +296,8 @@ function messageSendEquation(equation) {
 
 function messageSubmitAnagram(anagram) {
     cloak.message('submitAnagram', anagram);
+}
+
+function messageClue(clue) {
+    cloak.message('clue', clue);
 }

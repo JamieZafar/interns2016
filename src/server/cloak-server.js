@@ -6,6 +6,7 @@ var refreshService = require('./services/refresh-service');
 var lettersRound = require('./letters-round/letters-round');
 var leaderService = require('./services/leader-service');
 var conundrumRound = require('./conundrum-round/conundrum-round');
+var teaserRound = require('./teaser-round/teaser-round');
 
 var fiveMinutes = 300000;
 module.exports = function(expressServer) {
@@ -46,7 +47,9 @@ module.exports = function(expressServer) {
             getSmall: numbersRound.getSmall,
             submitEquation: numbersRound.submitEquation,
 
-            submitAnagram: conundrumRound.submitAnagram
+            submitAnagram: conundrumRound.submitAnagram,
+
+            clue: teaserRound.sendClue
         }
     });
     cloak.run();
@@ -241,7 +244,7 @@ function startGame(arg, user) {
         var teaser = room.data.conundrums.shift();
         room.data.teaserRound.anagram = teaser.first + teaser.second;
         room.data.teaserRound.solution = teaser.solution;
-        user.message('setTeaserSolution', teaser.solution);
+        room.messageMembers('setTeaserSolution', room.data.teaserRound.solution.toUpperCase());
         room.messageMembers('setTeaser', room.data.teaserRound.anagram.toUpperCase());
     }
     fireRoomListReload();

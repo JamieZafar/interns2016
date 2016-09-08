@@ -237,6 +237,13 @@ function startGame(arg, user) {
         room.messageMembers('setConundrum', room.data.conundrumRound.anagram.toUpperCase());
         conundrumRound.startAnswering(room);
     }
+    if(nextRoundType === 'T') {
+        var teaser = room.data.conundrums.shift();
+        room.data.teaserRound.anagram = teaser.first + teaser.second;
+        room.data.teaserRound.solution = teaser.solution;
+        user.message('setTeaserSolution', teaser.solution);
+        room.messageMembers('setTeaser', room.data.teaserRound.anagram.toUpperCase());
+    }
     fireRoomListReload();
 }
 

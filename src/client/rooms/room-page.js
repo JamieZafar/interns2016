@@ -12,6 +12,7 @@ import NumbersRound from '../game/numbers-round/numbers-round';
 import ReassuringMessages from './reassuring-messages/reassuring-messages';
 import ConundrumRound from '../game/conundrum-round/conundrum-round';
 import FinalScores from './final-scores/final-scores';
+import TeaserRound from '../game/teaser-round/teaser-round';
 
 import { leaveGame, reInitialiseState } from '../game/game-actions';
 import storageService from '../services/storage-service';
@@ -21,7 +22,8 @@ import style from './room.scss';
 const roundTypes = {
     letters: 'L',
     numbers: 'N',
-    conundrum: 'C'
+    conundrum: 'C',
+    teaser: 'T'
 };
 
 export class RoomPage extends Component {
@@ -56,6 +58,10 @@ export class RoomPage extends Component {
             }
             case roundTypes.conundrum: {
                 round = <ConundrumRound />
+                break;
+            }
+            case roundTypes.teaser: {
+                round = <TeaserRound />
                 break;
             }
             default: {

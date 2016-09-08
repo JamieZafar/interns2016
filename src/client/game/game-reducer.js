@@ -2,6 +2,7 @@ import * as actionTypes from './game-actions';
 import * as letterRoundActions from './letters-round/letter-round-actions';
 import * as numberRoundActions from './numbers-round/number-round-actions';
 import * as conundrumRoundActions from './conundrum-round/conundrum-round-actions';
+import * as teaserRoundActions from './teaser-round/teaser-round-actions';
 
 import { updateState } from '../utils/util';
 
@@ -33,7 +34,8 @@ const initialState = {
     sendEquation: false,
     bestAnswer: null,
     conundrum: '',
-    conundrumResults: {}
+    conundrumResults: {},
+    teaserAnagram: ''
 };
 
 const game = (state = initialState, action) => {
@@ -227,6 +229,11 @@ const game = (state = initialState, action) => {
         case conundrumRoundActions.CORRECT_ANAGRAM: {
             return updateState(state, {
                 conundrumResults: action.payload
+            })
+        }
+        case teaserRoundActions.SET_TEASER: {
+            return updateState(state, {
+                teaserAnagram: action.payload
             })
         }
         default:

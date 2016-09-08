@@ -34,6 +34,10 @@ function initialRoomData(user) {
             solution: null,
             anagram:  null
         },
+        teaserRound: {
+            solution: null,
+            anagram:  null
+        },
         possibleAnswers: {},
         finalAnswerList: {},
         conundrums: []
@@ -65,6 +69,10 @@ function newRoundData(oldData) {
             solution: null,
             anagram:  null
         },
+        teaserRound: {
+            solution: null,
+            anagram: null
+        },
         possibleAnswers: {},
         finalAnswerList: {}
     });
@@ -82,6 +90,8 @@ function setRounds(oldData, options) {
     }
 
     for(var i=0; i<options.rounds.teaser; i++) {
+        var index = Math.floor(Math.random() * (conundrums.length - 0));
+        oldData.conundrums.push(conundrums.splice(index, 1)[0]);
         roundList.push('T');
     }
 
@@ -91,7 +101,6 @@ function setRounds(oldData, options) {
         roundList.push('C');
     }
 
-    console.log(roundList);
     return roundList;
 }
 

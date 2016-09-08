@@ -43,6 +43,8 @@ import {
     correctAnagram 
 } from '../game/conundrum-round/conundrum-round-actions';
 
+import { setTeaser } from '../game/teaser-round/teaser-round-actions';
+
 import { getRoomDetails, refreshRoomUsers } from '../rooms/room-actions';
 
 import { refreshLobby, refreshRooms, roundTypes} from '../lobby/lobby-actions';
@@ -206,6 +208,9 @@ function configureAndRun(roomId) {
             },
             correctAnagram: results => {
                 dispatch(correctAnagram(results));
+            },
+            setTeaser: anagram => {
+                dispatch(setTeaser(anagram));
             }
         },
         initialData: {
